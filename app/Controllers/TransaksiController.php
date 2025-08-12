@@ -140,13 +140,15 @@ class TransaksiController extends BaseController
     {
         if ($this->request->getPost()) { 
             $dataForm = [
-                'username' => $this->request->getPost('username'),
-                'total_harga' => $this->request->getPost('total_harga'),
-                'alamat' => $this->request->getPost('alamat'),
-                'ongkir' => $this->request->getPost('ongkir'),
-                'status' => 0,
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s")
+                'username'     => $this->request->getPost('username'),
+                'total_harga'  => $this->request->getPost('total_harga'),
+                'alamat'       => $this->request->getPost('alamat'),
+                'ongkir'       => $this->request->getPost('ongkir'),
+                'ppn'          => $this->request->getPost('ppn'),          // ✅ Tambah
+                'biaya_admin'  => $this->request->getPost('biaya_admin'),  // ✅ Tambah
+                'status'       => 0,
+                'created_at'   => date("Y-m-d H:i:s"),
+                'updated_at'   => date("Y-m-d H:i:s")
             ];
 
             $this->transaction->insert($dataForm);
@@ -156,19 +158,19 @@ class TransaksiController extends BaseController
             foreach ($this->cart->contents() as $value) {
                 $dataFormDetail = [
                     'transaction_id' => $last_insert_id,
-                    'product_id' => $value['id'],
-                    'jumlah' => $value['qty'],
-                    'diskon' => 0,
+                    'product_id'     => $value['id'],
+                    'jumlah'         => $value['qty'],
+                    'diskon'         => 0,
                     'subtotal_harga' => $value['qty'] * $value['price'],
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s")
+                    'created_at'     => date("Y-m-d H:i:s"),
+                    'updated_at'     => date("Y-m-d H:i:s")
                 ];
 
                 $this->transaction_detail->insert($dataFormDetail);
             }
 
             $this->cart->destroy();
-    
+
             return redirect()->to(base_url());
         }
     }

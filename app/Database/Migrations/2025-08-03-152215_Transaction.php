@@ -10,15 +10,15 @@ class Transaction extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => TRUE,
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ],
             'username' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'null' => FALSE,
+                'null'       => FALSE,
             ],
             'total_harga' => [
                 'type' => 'DOUBLE',
@@ -32,10 +32,18 @@ class Transaction extends Migration
                 'type' => 'DOUBLE',
                 'null' => TRUE
             ],
+            'ppn' => [
+                'type' => 'DOUBLE',
+                'null' => TRUE
+            ],
+            'biaya_admin' => [
+                'type' => 'DOUBLE',
+                'null' => TRUE
+            ],
             'status' => [
-                'type' => 'INT',
+                'type'       => 'INT',
                 'constraint' => 1,
-                'null' => FALSE,
+                'null'       => FALSE,
             ],
             'created_at' => [
                 'type' => 'datetime',
