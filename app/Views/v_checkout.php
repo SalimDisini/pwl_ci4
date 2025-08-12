@@ -142,10 +142,9 @@ $(document).ready(function() {
     });  
 
     function hitungTotal() {
-        var subtotal = <?= $total ?>; // harga barang
+        var subtotal = <?= $total ?>; 
         var subtotalOngkir = subtotal + ongkir;
 
-        // Hitung biaya admin
         var biayaAdmin = 0;
         if (subtotal <= 10000000) {
             biayaAdmin = subtotal * 0.01;
@@ -155,18 +154,14 @@ $(document).ready(function() {
             biayaAdmin = subtotal * 0.006;
         }
 
-        // Hitung PPN 11%
         var ppn = subtotalOngkir * 0.11;
 
-        // Grand total
         var grandTotal = subtotalOngkir + ppn + biayaAdmin;
 
-        // Set nilai form
         $("#ongkir").val(ongkir);
         $("#ppn").val(ppn);
         $("#biaya_admin").val(biayaAdmin);
 
-        // Update tampilan
         $("#biaya_admin_display").html("IDR " + biayaAdmin.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
         $("#ppn_display").html("IDR " + ppn.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
         $("#grand_total").html("IDR " + grandTotal.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
