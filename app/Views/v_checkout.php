@@ -1,3 +1,4 @@
+<?php // Checkout View ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?>
 <div class="row">
@@ -58,13 +59,18 @@
                     </tr>
                     <tr>
                         <td colspan="2"></td>
-                        <td>Biaya Admin</td>
-                        <td><span id="biaya_admin_display">IDR 0</span></td>
+                        <td>PPN (11%)</td>
+                        <td><span id="ppn_display">IDR 0</span></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
-                        <td>PPN (11%)</td>
-                        <td><span id="ppn_display">IDR 0</span></td>
+                        <td>Ongkir</td>
+                        <td><span id="ongkir_display_table">IDR 0</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>Biaya Admin</td>
+                        <td><span id="biaya_admin_display">IDR 0</span></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -155,7 +161,6 @@ $(document).ready(function() {
         }
 
         var ppn = subtotalOngkir * 0.11;
-
         var grandTotal = subtotalOngkir + ppn + biayaAdmin;
 
         $("#ongkir").val(ongkir);
@@ -164,6 +169,7 @@ $(document).ready(function() {
 
         $("#biaya_admin_display").html("IDR " + biayaAdmin.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
         $("#ppn_display").html("IDR " + ppn.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+        $("#ongkir_display_table").html("IDR " + ongkir.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
         $("#grand_total").html("IDR " + grandTotal.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
 
         $("#total_harga").val(grandTotal);
